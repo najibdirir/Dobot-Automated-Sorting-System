@@ -21,8 +21,8 @@ class DobotManager:
 # -------------------------
 # 1) WiFi-uppgifter och funktioner
 # -------------------------
-SSID = "najiib - iPhone"
-PASSWORD = "Badboys3"
+SSID = ""
+PASSWORD = ""
 
 def connect_to_wifi(ssid, password, timeout=10):
     wlan = network.WLAN(network.STA_IF)
