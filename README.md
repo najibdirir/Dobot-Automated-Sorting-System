@@ -1,167 +1,89 @@
-# Automated Color Sorting System – Dobot Magician & Raspberry Pi Pico
+# Dobot Automated Sorting System
 
-**Embedded Systems | Robotics | Industrial Automation | MicroPython**
+**Embedded Systems | Robotics | MicroPython | UART | Wi-Fi / TCP-IP**
 
-**Institution:** Halmstad University  
-**Course:** Development Project (Utvecklingsprojekt)  
-**Year:** 2025  
-**Platform:** Dobot Magician & Raspberry Pi Pico
+**Halmstad University | Development Project | 2025**
 
 ## Project Overview
 
-This project explores the development of an automated robotic sorting system capable of identifying, picking, and placing objects according to their colors and incoming orders.
+Developed an embedded robotic control solution using Raspberry Pi Pico and Dobot Magician as part of a collaborative automated sorting project.
 
-The system integrates a Dobot Magician robotic arm, Raspberry Pi Pico, conveyor belt, color sensors, IR sensors, and network communication.
+The system is designed to receive sorting orders wirelessly from a client application, process the order information on a Raspberry Pi Pico server, and control the Dobot Magician robotic arm through UART communication.
 
-The development was carried out as a collaborative engineering project consisting of four subsystems: web/database, client interface, embedded server and robotic control, and PLC automation.
+The sorting process involves detecting objects, identifying their colors, and performing pick-and-place operations according to the received order.
 
-This repository focuses primarily on the embedded control, communication, and robot integration components.
+This repository focuses on the embedded server, robot communication, and hardware control components rather than the web application.
 
 ## Project Demonstration
 
-The physical prototype combines a robotic arm with a conveyor belt and sensors to perform color-based sorting.
+### Hardware Setup
 
-<!-- Add a real prototype image here after uploading it to images/ -->
+![Dobot Magician and Sorting System](images/hardware-setup.jpg)
 
-## System Architecture
+*Dobot Magician robotic arm, conveyor belt, and sorting hardware.*
 
-The system consists of four cooperating subsystems:
+## System Workflow
 
-| Subsystem | Responsibility |
+**Client Order → Wi-Fi / TCP-IP → Raspberry Pi Pico Server → UART → Dobot Magician → Object Sorting**
+
+1. The client application sends a sorting order over Wi-Fi.
+2. The Raspberry Pi Pico server receives and processes the order.
+3. Control commands are communicated to the Dobot Magician through UART.
+4. The robotic system performs color-based pick-and-place operations.
+
+## Technical Implementation
+
+- **MicroPython:** Embedded programming on Raspberry Pi Pico.
+- **TCP/IP Sockets:** Wireless communication and order reception.
+- **UART:** Serial communication between the microcontroller and robotic arm.
+- **JSON:** Processing incoming order information.
+- **Robot Control:** Motion commands and suction-based object handling.
+- **Hardware Integration:** Coordination with conveyor and sensor functions.
+
+## Source Code
+
+The repository contains modules for:
+
+| Module | Description |
 |---|---|
-| Web & Database | Order management and data storage |
-| Client Application | Graphical interface and communication with the server |
-| Embedded Server & Robot Control | Raspberry Pi Pico, TCP/IP communication, UART protocol, robotic movements and sorting logic |
-| PLC & Automation | Conveyor control and coordination of physical components |
+| `server.py` | TCP socket communication and incoming order processing |
+| `wifi-pico.py` | Wireless connection and server command handling |
+| `robot.py` | Dobot UART communication and robotic control |
+| `band.py` | Conveyor-related control functions |
+| `main.py` | Initialization and control integration |
+| `mesage.py` | Communication message handling |
 
-### Communication Architecture
+Some scripts represent separate development or testing stages and may require additional dependencies or configuration.
 
-The client application and embedded server communicate wirelessly over Wi-Fi using TCP/IP.
+## Testing and Results
 
-The Raspberry Pi Pico receives order information, processes commands, and communicates with the Dobot Magician through a UART serial interface.
+The project involved UART communication tests, wireless connection testing, robot movement verification, and integrated sorting tests.
 
-The robotic control software handles movement commands and supports automated pick-and-place operations.
+According to the project report, 58 out of 60 object placement attempts were successful, corresponding to approximately **96.7%**.
 
-This architecture separates client-side order interaction from the embedded robot controller.
+## My Contribution
 
-## Key Features
+My work focused on the embedded server and robotic control, including:
 
-### Robotic Arm Control
+- Configuring communication between Raspberry Pi Pico and Dobot Magician.
+- Developing UART-based robot control functions.
+- Implementing TCP/IP communication for receiving orders.
+- Integrating robotic movements with the sorting workflow.
+- Supporting hardware integration, testing, and troubleshooting.
 
-- Communication with Dobot Magician using UART.
-- Point-to-point (PTP) movement control.
-- Robotic pick-and-place operations.
-- Control of the suction-based gripping mechanism.
-- Command handling based on incoming sorting orders.
+The overall system was developed collaboratively, with additional components implemented by other project members.
 
-### Wireless Communication
+## Development Tools
 
-- Wi-Fi communication between the client and Raspberry Pi Pico.
-- TCP/IP socket-based server implementation.
-- Reception and processing of client orders.
-- Status and response messages for control operations.
+- Raspberry Pi Pico
+- Dobot Magician
+- MicroPython
+- Thonny IDE
+- DobotStudio
+- UART and TCP/IP communication
 
-### Automated Sorting
+## Documentation
 
-- Color-based sorting of red, green, and blue objects.
-- Integration with IR-based object detection.
-- Coordination with conveyor operation.
-- Placement of matching objects in predefined positions.
-- Handling of objects that do not match the requested order.
+The project report provides further details on system architecture, implementation, testing, and results.
 
-### Embedded Programming
-
-- MicroPython development using Thonny IDE.
-- UART communication and serial command packets.
-- GPIO-based peripheral interaction.
-- Network communication using sockets.
-- Integration and testing of multiple hardware components.
-
-## Hardware Components
-
-| Hardware | Function |
-|---|---|
-| Raspberry Pi Pico | Embedded controller and communication server |
-| Dobot Magician | Robotic arm for pick-and-place operations |
-| Conveyor Belt | Object transportation |
-| Color Sensor | Identification of object colors |
-| IR Sensors | Detection of object positions |
-| Suction Cup | Object gripping and lifting |
-| PLC | Control and coordination within the larger automation system |
-
-## My Technical Contributions
-
-The work focused on the embedded control and robotic integration aspects of the system, particularly:
-
-- Integration of Raspberry Pi Pico and Dobot Magician.
-- UART communication setup and command handling.
-- Development of robotic movement sequences.
-- Implementation of TCP/IP-based communication.
-- Coordination of sorting commands and robot actions.
-- Hardware and communication testing.
-- Integration activities involving the client and embedded control subsystems.
-
-The complete system was developed collaboratively, with other project members contributing to the web/database, client interface, and PLC components.
-
-## Development and Testing
-
-The system was developed incrementally, starting with individual component tests before integration.
-
-Testing activities documented in the project report included:
-
-- UART communication and checksum verification.
-- Wi-Fi connectivity and TCP/IP messaging.
-- Robotic movement and suction control.
-- Color detection and IR sensor tests.
-- Conveyor operation.
-- Integrated sorting and pick-and-place testing.
-
-The report records 58 successful object placements out of 60 attempts, corresponding to approximately 96.7% in that test set.
-
-## Engineering Challenges
-
-### Communication Reliability
-
-Establishing communication between the Raspberry Pi Pico and Dobot Magician required configuration and testing of UART parameters and command formats.
-
-### Hardware Integration
-
-Coordinating the robot, sensors, and conveyor required iterative testing and troubleshooting.
-
-### Robot Positioning
-
-Predefined movement coordinates introduced limitations in placement precision. Dynamic position feedback could improve future performance.
-
-### Network Coordination
-
-The system required reliable exchange of commands between the client application and the embedded controller.
-
-## Development Environment
-
-- **Programming:** MicroPython
-- **IDE:** Thonny
-- **Microcontroller:** Raspberry Pi Pico
-- **Robot:** Dobot Magician
-- **Communication:** UART, Wi-Fi, TCP/IP
-- **Testing:** DobotStudio, serial output, oscilloscope and hardware integration tests
-
-## Repository Scope
-
-This repository documents the available embedded software and associated development work.
-
-The complete original system included additional web, database, GUI, and PLC components developed collaboratively. Not all of those components are included in this repository.
-
-## Future Improvements
-
-- Add robot position feedback.
-- Improve handling of communication errors.
-- Introduce dynamic position adjustment.
-- Extend automated testing.
-- Improve modularity and documentation.
-- Strengthen coordination between system components.
-
-## Acknowledgements
-
-Developed as part of a collaborative engineering project at Halmstad University.
-
-The project involved contributions from team members across the web, client, embedded server, robotic control, and PLC subsystems.
+*Note: The repository documents an academic prototype. Additional hardware configuration and software dependencies may be required to reproduce the complete system.*
