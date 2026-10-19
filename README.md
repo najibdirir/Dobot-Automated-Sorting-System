@@ -1,11 +1,3 @@
-# Dobot Automated Sorting System
-
-**Embedded Systems | Robotics | MicroPython | UART | Wi-Fi / TCP-IP**
-
-**Halmstad University | Development Project | 2025**
-
-## Project Overview
-
 Developed an embedded robotic control solution using Raspberry Pi Pico and Dobot Magician as part of a collaborative automated sorting project.
 
 The system is designed to receive sorting orders wirelessly from a client application, process the order information on a Raspberry Pi Pico server, and control the Dobot Magician robotic arm through UART communication.
