@@ -60,6 +60,35 @@ This repository focuses on embedded server functionality, robot communication, a
 
 *Illustration of the robotic sorting configuration with Dobot Magician arms, a conveyor belt, and colored objects.*
 
+
+## Hardware Components
+
+The embedded sorting system integrates a Raspberry Pi Pico,
+Dobot Magician robotic arm, conveyor belt, color sensor,
+and infrared object detection sensors.
+
+### Raspberry Pi Pico
+
+![Raspberry Pi Pico Pinout](images/pico.png)
+
+*Raspberry Pi Pico pinout showing GPIO and communication
+interfaces used during embedded development.*
+
+### Color Sensor
+
+![Color Sensor](images/colorsensor.png)
+
+*Color sensor used to identify objects during the sorting
+process.*
+
+### Infrared Sensor
+
+![IR Sensor](images/IRsensor.jpg)
+
+*Infrared sensor used to detect objects and support
+conveyor-based positioning.*
+
+
 ## Source Code
 
 The repository contains the following modules:
@@ -77,21 +106,79 @@ Some scripts represent separate development or testing stages and may require ad
 
 ## Testing and Results
 
-The project involved UART communication tests, wireless connection testing, robot movement verification, and integrated sorting tests.
 
-According to the project report, **58 out of 60 object placement attempts were successful (96.7%)**.
+## Testing and Verification
+
+The system was developed and verified using a step-by-step
+testing approach, beginning with individual component tests
+before integrating the complete sorting system.
+
+### Unit Testing (Component Testing)
+
+Each hardware component and communication function was
+tested individually before system integration.
+
+Tests included:
+
+- **UART Communication:** Verified serial data transmission
+  between Raspberry Pi Pico and Dobot Magician.
+- **Robot Movement:** Tested positioning, point-to-point
+  movements, and suction-based gripping.
+- **Color Sensor:** Tested identification of red, green,
+  and blue objects.
+- **IR Sensor:** Verified object detection at selected
+  conveyor positions.
+- **Conveyor Belt:** Tested motor operation and movement
+  control.
+- **Wi-Fi / TCP-IP:** Verified wireless connectivity,
+  server communication, and order reception.
+
+### Integration Testing
+
+After individual component verification, the modules
+were combined and tested as an integrated system.
+
+The integration tests focused on:
+
+1. Receiving sorting orders from the client application.
+2. Processing orders on the Raspberry Pi Pico server.
+3. Coordinating sensors and conveyor operation.
+4. Sending control commands to Dobot Magician via UART.
+5. Executing robotic pick-and-place operations.
+6. Verifying object placement according to the order.
+
+### Test Results
+
+According to the project report, 58 out of 60 object
+placement attempts were successful, corresponding to
+approximately **96.7% placement accuracy**.
+
+The tests demonstrated the integration of communication,
+sensing, conveyor operation, and robotic control.
+
+
 
 ## My Contribution
 
-My work focused on embedded server development, robotic control, and integration, including:
+My work focused on embedded server development,
+robotic control, hardware integration, and testing.
 
-- Configuring UART communication between Raspberry Pi Pico and Dobot Magician.
-- Developing robot movement and control functions.
-- Implementing TCP/IP communication for receiving sorting orders.
-- Integrating robot operations with the sorting process.
-- Supporting hardware integration, testing, and troubleshooting.
+- Configured UART communication between Raspberry Pi Pico
+  and Dobot Magician.
+- Developed and integrated robot control functions.
+- Implemented TCP/IP communication for order reception.
+- Supported sensor and conveyor integration.
+- Performed component-level testing of hardware and
+  communication functions.
+- Conducted integration testing to verify interaction
+  between the embedded server, sensors, conveyor,
+  and robotic arm.
+- Troubleshot communication and hardware integration issues.
 
-The overall system was developed collaboratively, with other project members contributing additional components.
+The overall system was developed collaboratively,
+with additional components implemented by other
+project members.
+
 
 ## Development Tools
 
